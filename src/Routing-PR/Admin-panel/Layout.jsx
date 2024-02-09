@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div className=' vh-100 aside position-relative z-2 ' style={{ width: "300px" }}>
       <div className='aside-top d-flex  justify-content-center align-items-center '>
-        <h2 className='text-theme'>Filter-PR</h2>
+        <h2 className='text-theme'>Practical-Test</h2>
       </div>
       <div className="profile py-3 ">
         <div className="user-img m-auto " style={{height:"116px",width:'146px'}}>

@@ -23,14 +23,16 @@ const Users = ({ user, setUser }) => {
         // console.log(e.target.value)
         dispatch(filterByFees(x));
     };
-
+    useEffect(() => {
+        dispatch(filterByFees('All'));
+    },[])
 
     const handleSort = () => {
         const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
         dispatch(sortTeam(newSortOrder));
     };
 
-    const filteredData = searchTerm ? filteredTeam : team;
+    const filteredData = searchTerm ? filteredTeam : team || [];
 
 
     return (
@@ -66,7 +68,7 @@ const Users = ({ user, setUser }) => {
                         </tr>
                     </thead>
                     <tbody>{
-                        filteredData && filteredData.map((item, index) => {
+                        filteredTeam && filteredTeam.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td scope="row">{item.id}</td>

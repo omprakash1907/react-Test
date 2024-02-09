@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         }
     }
     if (action.type === 'sortTeam') {
-        const sortedTeam = [...state.team].sort((a, b) => {
+        const sortedTeam = [...state.filteredTeam].sort((a, b) => {
             if (action.payload === 'asc') {
                 return a.name.localeCompare(b.name);
             } else {
@@ -29,23 +29,30 @@ const reducer = (state = initialState, action) => {
             }
         });
         return {
-            ...state, team: sortedTeam, sortOrder: action.payload
+            ...state, filteredTeam: sortedTeam, sortOrder: action.payload
         };
     }
     if (action.type === 'filterByFees') {
-        const feeType = action.payload;
-        const Team = state.team.filter(item => {
-            if (feeType === 'All') {
-                return true;
-            } else {
-                return item.fees === feeType;
-            }
-        });
-
+        // const feeType = action.payload;
+        // const Team = state.team.some((item) => {
+        //     if (feeType === 'All') {
+        //         return true;
+        //     } else {
+        //         let x;
+        //         if (item.fees === feeType) {
+        //             x = item
+        //         }
+        //         console.log(x)
+        //         // return item.fees === feeType;
+        //     }
+        // });
+        let x = state.team.filter((item) => {
+            return action.payload === 'All' ? true : action.payload === item.fees;
+        })
         return {
-            ...state,
-            filteredTeam: Team
-        };
+            ...state, filteredTeam: x
+        }
+
     }
     return state;
 }
